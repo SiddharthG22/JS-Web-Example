@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Programming Quotes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+    
+<body>
+    
+    <center><a href="https://programming-quotes-api.herokuapp.com/">Data accredited to...</a></center>
+
+    
+    <div class="jumbotron text-center">
+        <h1>Quotes to sooth the angry programmer</h1>
+        <img src="bruh1.png" width="400" height="200">
+    </div>
+
+
+
+    <div>
+        <p id="contents"></p>
+    </div>
+     
+    <div class="container">
+        <div class="rw">
+            <div class="col-sm">
+                <input type="button" onclick="randomQuote()" value="Click here to see that you're not alone.">
+                    <p id="joke">
+                    </p>
+                </div>
+            </div>
+        </div>
+    <script>
+        function randomQuote() {
+            fetch('https://programming-quotes-api.herokuapp.com/quotes/random', {
+                    headers: new Headers({
+                        'Accept': 'application/json'
+                    })
+                })
+
+                .then((response) => {
+                    return response.json();
+                })
+                .then((response) => {
+                    console.log(response);
+                    let p = document.getElementById('joke');
+
+                    p.textContent = response.en;
+                    p.textContent += " - " + response.author;
+                });
+        }
+        
+    </script>
+
+</body></html>
